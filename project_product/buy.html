@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  </head>
+  <body onload="showbuy()">
+   <div class="container">
+    <div class="row">
+        <h1>สั่งซื้อ</h1>
+    </div>
+    <form onsubmit="return false">
+      <div class="row">
+        <div class="col">
+          <label for="fname " class="form-label">fname</label>
+          <input type="text" class="form-control"  id="fname">
+        </div>
+        <div class="col">
+          <label for="lname" class="form-label">lname</label>
+          <input type="text" class="form-control" id="lname">
+        </div>
+      </div>
+      <input type="hidden" id="id" value="1" name="id">
+        <div class="mb-3">
+          <label for="gender" class="form-label">gender</label>
+          <input type="text" class="form-control" id="gender" disabled >
+        </div>
+        <div class="mb-3">
+            <label for="style" class="form-label">style</label>
+            <input type="text" class="form-control" id="style"  disabled>
+          </div>
+          <div class="mb-3">
+            <label for="size" class="form-label">size</label>
+            <input type="text" class="form-control" id="size"  disabled>
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">price</label>
+            <input type="text" class="form-control" id="price"  disabled>
+          </div>
+
+          <div class="mb-3">
+            <label for="address" class="form-label">address</label>
+            <textarea class="form-control is-invalid" id="address"  required></textarea>
+          </div>
+     
+        <button type="button" onclick="buy()" class="btn btn-primary">Confirm</button>
+      </form>
+
+   </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+ 
+  </body>
+</html>
+
+<script>
+  var showbuy = function(){
+    
+
+  
+  const params =new URLSearchParams(window.location.search);
+const id = params.get('id');
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch("http://127.0.0.1/project_product/api/product/showbuyproduct.php?id="+id, requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    var jsonObj =JSON.parse(result);
+    document.getElementById('id').value = jsonObj.id;
+    document.getElementById('gender').value = jsonObj.gender;
+    document.getElementById('style').value = jsonObj.style;
+    document.getElementById('size').value = jsonObj.size;
+    document.getElementById('price').value = jsonObj.price;
+    
+  })
+  .catch(error => console.log('error', error));
+  }
+
+
+var buy = function(){
+
+
+  var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+var raw = JSON.stringify({
+  "fname": document.getElementById('fname').value,
+  "lname": document.getElementById('lname').value,
+  "id":   document.getElementById('id').value,
+  "address": document.getElementById('address').value
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("http://127.0.0.1/project_product/api/product/create.php", requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    var jsonObj =JSON.parse(result);
+    if (jsonObj.status == 'ok'){
+        alert('เสร็จสิ้น');
+        window.location.href='index.html';
+    } else{
+        alert('error');
+    }
+  })
+  .catch(error => console.log('error', error));
+
+}
+
+</script>

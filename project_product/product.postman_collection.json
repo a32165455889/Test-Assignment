@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "bd99721f-c6e9-4256-929a-617fa55cdd71",
+		"name": "product",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28375268"
+	},
+	"item": [
+		{
+			"name": "showproduct",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1/project_product/api/product/read.php",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"project_product",
+						"api",
+						"product",
+						"read.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showbuy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1/project_product/api/product/showbuy.php",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"project_product",
+						"api",
+						"product",
+						"showbuy.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showbuyproduct",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\"gender\": \"Men\"",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1/project_product/api/product/showbuyproduct.php?id=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"project_product",
+						"api",
+						"product",
+						"showbuyproduct.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fname\": \"test\",\r\n    \"lname\": \"test\",\r\n    \"id\": 1,\r\n    \"address\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1/project_product/api/product/create.php",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"project_product",
+						"api",
+						"product",
+						"create.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
