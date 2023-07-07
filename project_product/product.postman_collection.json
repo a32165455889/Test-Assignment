@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1/project_product/api/product/read.php",
+					"raw": "http://127.0.0.1/project_product/api/product/showproduct.php",
 					"protocol": "http",
 					"host": [
 						"127",
